@@ -1,0 +1,77 @@
+Dunkkis Server
+==============
+Release note for version 0.1-2
+
+Copyright (c) 2009-2010 Nomovok Ltd
+This software is licensed under The MIT License. See LICENSE for details.
+
+Author Juha Hytonen - juha.hytonen@nomovok.com
+
+
+
+
+
+Changelog
+---------
+
+12.02.2010 - v0.1-2 - Juha Hytonen <juha.hytonen@nomovok.com>
+- "sensorid" and "deviceid" fields "data" table for extended to 48 chars.
+- Latest measurement algorithms have been revised lighter.
+- Latest measurement view no longer shows other user's cameras, device names
+  or sensor names by accident.
+- Latest measurement view now supports multiple MAC devices.
+- API includes functions for saving and retrieving cameras from the database.
+- The non-functioning getAlarmSensors() API functions is fixed.
+- getAlarmDetails() API function has been revised. The time of latest 
+  surveillance event is now supplied in "schedules". "contacts" contains a
+  list of surveillance contacts and the times they have been notified.
+  "sensors" and "history" is left unused as there are separate functions for
+  those.
+- "timestamp" field was added to DsDevSensorPicture type.
+- "autoEnable" field was added to DsAlarmSensor type.
+
+
+
+
+
+Updating
+--------
+
+For information on how to update your existing server installation, see
+README "Updating an existing server". 
+
+In addition to the instructions in the README, you have to do some manual
+changes to the database structrure. If you are installing from scratch, these
+changes are automatically applied. Below are the instructions for updating
+the structure.
+
+1) Log in to the Dunkkis database. Issue the following command in the console:
+   "mysql --database=<YOUR_DB_NAME> --user=<YOUR_USER_NAME> --password=<PWD>"
+
+    The default database name is "dunkkis_demo_v3". You need to login as an
+    user who has the necessary privileges to edit table structures.
+
+2) Execute the following commands in the MySQL prompt:
+   "ALTER TABLE data CHANGE COLUMN sensorid sensorid VARCHAR(48);"
+   "ALTER TABLE data CHANGE COLUMN deviceid deviceid VARCHAR(48);"
+
+3) Now execute the following command to check that the changes succeeded:
+   "DESCRIBE data;"
+
+   The result of the previous command should be as follows:
+  +----------+-------------+------+-----+---------+-------+
+  | Field    | Type        | Null | Key | Default | Extra |
+  +----------+-------------+------+-----+---------+-------+
+  | mac      | varchar(48) | NO   |     | NULL    |       | 
+  | value    | float(10,4) | NO   |     | NULL    |       | 
+  | type     | varchar(16) | NO   |     | NULL    |       | 
+  | sensorid | varchar(48) | NO   |     | NULL    |       | 
+  | deviceid | varchar(48) | NO   |     | NULL    |       | 
+  | time     | datetime    | NO   | MUL | NULL    |       | 
+  | logtime  | datetime    | YES  |     | NULL    |       | 
+  +----------+-------------+------+-----+---------+-------+
+  7 rows in set (0.10 sec)
+
+4) You may now exit the MySQL command prompt by typing "exit;".
+
+No further changes need be applied.

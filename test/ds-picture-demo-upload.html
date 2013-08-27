@@ -1,0 +1,45 @@
+<!-- PictureViewer - Demo
+     This script is for uploading images into the Dunkkis test 
+	 database for testing purposes. 
+	 @author Juha Hytonen - juha.hytonen@nomovok.com
+     @date 21.12.2009
+-->  
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+	<meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+		<title>Dunkkis Picture Viewer Demo - Upload File to Database</title>
+	</head>
+	<body>
+        
+		<h3>File Upload</h3> 
+		
+		<p><i>This script is for uploading images into the Dunkkis test 
+		database for testing purposes. There are no error checks associated
+		with the uploading, so be careful with your input.</i></p>
+		
+        <form enctype="multipart/form-data" action="ds-picture-demo-upload.php" method="post">
+		
+            <input type="hidden" name="MAX_FILE_SIZE" value="10000000" />	
+			
+			<p>1 )Choose a file to upload. <br />
+            <input name="sourceFile" type="file" /> </p>
+			
+			<p>2) Enter a logtime for the file (yyyy-mm-dd hh:mm:ss). <br />
+			<i>If you enter no logtime, present time will be used.</i><br />
+			<input name="logTime" type="text" /></p> 
+			
+			<p>3) Enter a sensor id. (eg. "26.C0295C000000") <br />
+			<input name="sensorId" type="text" /></p> 
+			
+			<p>4) Enter a device id. (eg. "0E469C00") <br />
+			<input name="deviceId" type="text" /></p> 
+			
+            <input type="submit" value="Upload" />
+			
+        </form>
+    </body>
+</html>

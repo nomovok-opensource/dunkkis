@@ -1,0 +1,293 @@
+/** Dunkkis Web User Interface
+  * ==========================
+  * General style definitions
+  * 
+  * Copyright (c) 2009-2010 Nomovok Ltd
+  * This software is licensed under The MIT License. See LICENSE for details.
+  *
+  * @author Juha Hytonen - juha.hytonen@nomovok.com
+  */
+
+
+div.MessageBox
+{
+
+    display:                block; 
+    width:                  auto; 
+    height:                 auto; 
+    text-align:             center; 
+    margin:                 0px auto -1px auto;
+    border-style:           solid; 
+    background-color:       #FFFFFF; 
+    padding:                5px;
+
+}
+
+/** Login screen layout.
+  */
+div.Login
+{
+
+    width:                  auto; 
+    height:                 auto; 
+    position:               absolute; 
+    top:                    50%; 
+    left:                   50%; 
+    margin-left:            -330px; 
+    margin-top:             -150px; 
+    background-color:       #FFFFFF; 
+    padding:                30px; 
+    border:                 1px solid lightblue;
+    text-align:             center; 
+
+}
+
+/** Login screen decoration image.
+  */
+div.Login img.Image 
+{
+
+    display:                inline;
+    float:                  left;
+
+}
+
+/** Login screen form layout.
+  */
+div.Login table.Form
+{
+
+    display:                inline;
+    vertical-align:         center;
+
+}
+
+/** Table cell style for field captions.
+  */
+div.Login table.Form td.Caption
+{
+
+    text-align:             right;
+
+}
+
+/** Table cell style for fields.
+  */
+div.Login table.Form td.Field
+{
+
+    text-align:             left;
+
+}
+
+/** Table footer. Contains the teaser text.
+  */
+div.Login table.Form td.Footer
+{
+
+    text-align:             left;
+    font-size:              10pt;
+
+}
+
+/** Login error style.
+  */
+div.LoginError
+{
+
+    width:                  100%;
+    background-color:       #ffc0cb;
+    padding:                3px;
+    text-align:             left;
+
+}
+
+/** Error message.
+  */
+div.DunkkisError
+{
+
+    width:                  75%;
+    background-color:       #ffc0cb;
+    padding:                3px;
+    text-align:             left;
+
+}
+
+/** Successful operation notification.
+  */
+div.DunkkisSuccess
+{
+
+    width:                  75%;
+    background-color:       #c1ffc1;
+    padding:                3px;
+    text-align:             left;
+
+}
+
+/** Confirmation message.
+  */
+div.DunkkisConfirmation
+{
+
+    width:                  75%;
+    background-color:       #cccccc;
+    padding:                3px;
+    text-align:             left;
+
+}
+
+/** Confirmation message layout.
+  */
+div.DunkkisConfirmation form.ActionTable
+{
+
+    display:                inline;
+
+}
+
+/** Button style of confirmation message.
+  */
+div.DunkkisConfirmation form.ActionTable input.Button
+{
+
+    font-size:              8pt;
+    font-family:            Arial, Helvetica, sans-serif;
+    padding:                1px;
+
+}
+
+/** Management button layout.
+  */
+form.ManagementButton
+{
+
+    display:                inline;
+
+}
+
+/** Management button styling.
+  */
+form.ManagementButton input.Button
+{
+
+    font-size:              8pt;
+    font-family:            Arial, Helvetica, sans-serif;
+    padding:                1px;
+
+}
+
+/** Custom H4 heading.
+  */
+h4.DunkkisHeading
+{
+
+    width:                  100%;
+    font-family:            Arial, Helvetica, sans-serif;
+    border-bottom:          solid 1px #000000;
+
+}
+
+/** Table for showing database contents.
+  */
+table.DunkkisTable
+{
+
+    min-width:              100%;
+    border:                 none;
+    border-collapse:        collapse;
+    font-family:            Arial, Helvetica, sans-serif;
+
+}
+
+/** Heading row.
+  */
+table.DunkkisTable tr.Header 
+{
+
+    font-size:              10pt;
+    font-color:             #000000;
+
+}
+
+table.DunkkisTable th
+{
+}
+
+/** Odd content row. 
+  */
+table.DunkkisTable tr.OddRow
+{
+
+    background-color:       #eeeeee;
+
+}
+
+/** Even content row.
+  */
+table.DunkkisTable tr.EvenRow
+{
+
+    background-color:       #dddddd;
+
+}
+
+table.DunkkisTable td
+{
+
+    padding:                3px;
+
+}
+
+/** Data cell. Can contain for example sensor name etc.
+  */
+table.DunkkisTable td.Data
+{
+
+    text-align:             left;
+    vertical-align:         top;
+
+}
+
+/** Management button cell. Contains management buttons for row item.
+  */
+table.DunkkisTable td.Manage
+{
+
+    max-width:              5%;
+    text-align:             left;
+    vertical-align:         top;
+
+}
+
+/** Management button cell. Contains management buttons with images for row item.
+  */
+table.DunkkisTable td.ManageImg
+{
+
+    width:                  25px;
+    text-align:             left;
+    vertical-align:         top;
+
+}
+
+/** Management button layout. Make buttons show side by side.
+  */
+table.DunkkisTable form.ActionTable
+{
+
+    display:                inline;
+
+}
+
+/** Management button style.
+  */
+table.DunkkisTable form.ActionTable input.Button
+{
+
+    font-size:              8pt;
+    font-family:            Arial, Helvetica, sans-serif;
+    padding:                1px;
+
+}

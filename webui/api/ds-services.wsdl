@@ -1,0 +1,641 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Dunkkis Server
+   - ==============
+   - Service definitions
+   - 
+   - Copyright (c) 2009-2010 Nomovok Ltd
+   - This software is licensed under The MIT License. See LICENSE for details.
+   -->
+
+<definitions name="dunkkisServices" targetNamespace="dunkkis:dunkkisServices"
+    xmlns="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="dunkkis:dunkkisServices">
+    <types>
+        <xsd:schema targetNamespace="dunkkis:dunkkisServices" xmlns:tns="dunkkis:dunkkisServices">
+            <xsd:simpleType name="DsDevSensorState">
+                <xsd:restriction base="xsd:int">
+                    <xsd:enumeration value="300" id="DS_SENSOR_READY"/>
+                    <xsd:enumeration value="301" id="DS_SENSOR_BUSY"/>
+                    <xsd:enumeration value="399" id="DS_SENSOR_FAILURE"/>
+                </xsd:restriction>
+            </xsd:simpleType>
+
+            <xsd:simpleType name="DsLogOrdering">
+                <xsd:restriction base="xsd:int">
+                    <xsd:enumeration value="0" id="DS_ORDER_ASCENDING"/>
+                    <xsd:enumeration value="1" id="DS_ORDER_DESCENDING"/>
+                </xsd:restriction>
+            </xsd:simpleType>
+
+            <xsd:simpleType name="DsAlarmSensorState">
+                <xsd:restriction base="xsd:int">
+                    <xsd:enumeration value="0" id="DS_ALARM_SENSOR_DISABLED"/>
+                    <xsd:enumeration value="1" id="DS_ALARM_SENSOR_ACTIVE"/>
+                </xsd:restriction>
+            </xsd:simpleType>
+
+            <xsd:complexType name="DsDevSensor">
+                <xsd:sequence>
+                    <xsd:element name="sensorId" type="xsd:string"></xsd:element>
+                    <xsd:element name="sensorName" type="xsd:string"></xsd:element>
+                    <xsd:element name="sensorType" type="xsd:string"></xsd:element>
+                    <xsd:element name="sensorState" type="tns:DsDevSensorState"></xsd:element>
+                    <xsd:element name="deviceId" type="xsd:string"></xsd:element>
+                </xsd:sequence>
+            </xsd:complexType>
+
+            <xsd:complexType name="DsPrmProfile">
+                <xsd:sequence>
+                    <xsd:element name="userName" type="xsd:string"></xsd:element>
+                    <xsd:element name="profileName" type="xsd:string"></xsd:element>
+                    <xsd:element name="profilePassword" type="xsd:string"></xsd:element>
+                </xsd:sequence>
+            </xsd:complexType>
+
+            <xsd:complexType name="DsAuthSession">
+                <xsd:sequence>
+                    <xsd:element name="sessionId" type="xsd:string"></xsd:element>
+                    <xsd:element name="protocolVersion" type="xsd:int"></xsd:element>
+                </xsd:sequence>
+            </xsd:complexType>
+
+            <xsd:complexType name="DsLogMeasurement">
+                <xsd:sequence>
+                    <xsd:element name="sensor" type="tns:DsDevSensor"></xsd:element>
+                    <xsd:element name="measurementType" type="xsd:string"></xsd:element>
+                    <xsd:element name="measurementValue" type="xsd:float"></xsd:element>
+                    <xsd:element name="measurementStampdate" type="xsd:string"></xsd:element>
+                </xsd:sequence>
+            </xsd:complexType>
+ 
+            <xsd:complexType name="DsAlarm">
+                <xsd:sequence>
+                    <xsd:element name="alarmName" type="xsd:string"></xsd:element>
+                    <xsd:element name="alarmId" type="xsd:int"></xsd:element>
+                </xsd:sequence>
+            </xsd:complexType>
+
+            <xsd:complexType name="DsAlarmHistory">
+                <xsd:sequence>
+                    <xsd:element name="alarmId" type="xsd:int"></xsd:element>
+                    <xsd:element name="alarmName" type="xsd:string"></xsd:element>
+		            <xsd:element name="sensorId" type="xsd:string"></xsd:element>
+                    <xsd:element name="sensorName" type="xsd:string"></xsd:element>
+		            <xsd:element name="scheduleId" type="xsd:int"></xsd:element>
+                    <xsd:element name="scheduleName" type="xsd:string"></xsd:element>
+                    <xsd:element name="measurementValue" type="xsd:float"></xsd:element>
+                    <xsd:element name="measurementStampdate" type="xsd:string"></xsd:element>
+                </xsd:sequence>
+            </xsd:complexType>
+
+            <xsd:complexType name="DsAlarmDetails">
+                <xsd:sequence>
+                    <xsd:element name="alarmId" type="xsd:int"></xsd:element>
+                    <xsd:element name="alarmName" type="xsd:string"></xsd:element>
+                    <xsd:element name="schedules" type="xsd:string"></xsd:element>
+                    <xsd:element name="contacts" type="xsd:string"></xsd:element>
+                    <xsd:element name="history" type="xsd:string"></xsd:element>
+                    <xsd:element name="sensors" type="xsd:string"></xsd:element>
+                </xsd:sequence>
+            </xsd:complexType>
+
+            <xsd:complexType name="DsAlarmSensor">
+                <xsd:sequence>
+                    <xsd:element name="alarmId" type="xsd:int"></xsd:element>
+                    <xsd:element name="sensorId" type="xsd:string"></xsd:element>
+                    <xsd:element name="sensorName" type="xsd:string"></xsd:element>
+                    <xsd:element name="state" type="tns:DsAlarmSensorState"></xsd:element>
+                    <xsd:element name="autoEnable" type="xsd:boolean"></xsd:element>
+                </xsd:sequence>
+            </xsd:complexType>
+
+            <xsd:complexType name="DsAlarmTrigger">
+                <xsd:sequence>
+                    <xsd:element name="id" type="xsd:int"></xsd:element>
+                    <xsd:element name="sensor_id" type="xsd:int"></xsd:element>
+                    <xsd:element name="minimumValue" type="xsd:float"></xsd:element>
+                    <xsd:element name="maximumValue" type="xsd:float"></xsd:element>
+                    <xsd:element name="enabled" type="xsd:boolean"></xsd:element>
+                    <xsd:element name="actions" type="tns:AlarmActionArray"></xsd:element>
+                </xsd:sequence>
+            </xsd:complexType>
+
+            <xsd:complexType name="DsLogCriteria" >
+                <xsd:sequence>
+                    <xsd:element name="from" type="xsd:date"></xsd:element>
+                    <xsd:element name="to" type="xsd:date"></xsd:element>
+                    <xsd:element name="interval" type="xsd:int"></xsd:element>
+                    <xsd:element name="limit" type="xsd:int"></xsd:element>
+                    <xsd:element name="order" type="tns:DsLogOrdering"></xsd:element>
+                </xsd:sequence>
+            </xsd:complexType>
+
+            <xsd:complexType name="DeviceData">
+                <xsd:sequence>
+					<xsd:element name="item" type="tns:DsLogMeasurement" minOccurs="0" maxOccurs="unbounded"></xsd:element>
+                </xsd:sequence>
+            </xsd:complexType>
+
+            <xsd:simpleType name="DsDevDeviceType">
+            	<xsd:restriction base="xsd:int">
+                    <xsd:enumeration value="100" id="DS_DUNKKIS_DEVICE"/>
+                    <xsd:enumeration value="101" id="DS_GENERIC_DEVICE"/>
+                    <xsd:enumeration value="102" id="DS_TEMPERATURE_DEVICE"/>
+                    <xsd:enumeration value="103" id="DS_PRESSURE_DEVICE"/>
+                    <xsd:enumeration value="104" id="DS_HUMIDITY_DEVICE"/>
+                    <xsd:enumeration value="105" id="DS_CAMERA_DEVICE"/>
+                    <xsd:enumeration value="106" id="DS_SECURITY_DEVICE"/>
+                </xsd:restriction>
+            </xsd:simpleType>
+
+            <xsd:simpleType name="DsDevDeviceState">
+            	<xsd:restriction base="xsd:int">
+                    <xsd:enumeration value="200" id="DS_DEVICE_READY"/>
+                    <xsd:enumeration value="201" id="DS_DEVICE_BUSY"/>
+                    <xsd:enumeration value="202" id="DS_DEVICE_READING"/>
+                    <xsd:enumeration value="299" id="DS_DEVICE_FAILURE"/>
+                </xsd:restriction>
+            </xsd:simpleType>
+
+            <xsd:complexType name="DsDeviceInterval"></xsd:complexType>
+
+            <xsd:complexType name="DsDevDevice">
+            	<xsd:sequence>
+					<xsd:element name="deviceId" type="xsd:string"></xsd:element>
+					<xsd:element name="deviceType" type="tns:DsDevDeviceType"></xsd:element>
+					<xsd:element name="deviceState" type="tns:DsDevDeviceState"></xsd:element>
+					<xsd:element name="deviceInterval" type="tns:DsDeviceInterval"></xsd:element>
+					<xsd:element name="deviceName" type="xsd:string"></xsd:element>
+					<xsd:element name="boxName" type="xsd:string"></xsd:element>
+            	</xsd:sequence>
+            </xsd:complexType>
+
+            <xsd:complexType name="DsDevSensorThumb">
+            	<xsd:sequence>
+					<xsd:element name="sensor" type="xsd:DsDevSensor"></xsd:element>
+					<xsd:element name="thumbnail" type="xsd:string"></xsd:element>
+					<xsd:element name="measurementStampdate" type="xsd:string"></xsd:element>
+            	</xsd:sequence>
+            </xsd:complexType>
+
+            <xsd:complexType name="DsDevSensorPicture">
+            	<xsd:sequence>
+					<xsd:element name="sensor" type="xsd:DsDevSensor"></xsd:element>
+					<xsd:element name="timestamp" type="xsd:string"></xsd:element>
+					<xsd:element name="picture" type="xsd:string"></xsd:element>
+            	</xsd:sequence>
+            </xsd:complexType>
+
+            <xsd:complexType name="DeviceArray">
+                <xsd:sequence>
+                    <xsd:element name="item" type="tns:DsDevDevice" minOccurs="0" maxOccurs="unbounded"></xsd:element>
+                </xsd:sequence>
+            </xsd:complexType>
+
+            <xsd:complexType name="SensorArray">
+                <xsd:sequence>
+                    <xsd:element name="item" type="tns:DsDevSensor" minOccurs="0" maxOccurs="unbounded"></xsd:element>
+                </xsd:sequence>
+            </xsd:complexType>
+
+             <xsd:complexType name="ProfileArray">
+                <xsd:sequence>
+                    <xsd:element name="profile" type="tns:DsPrmProfile" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+                </xsd:sequence>
+            </xsd:complexType>
+
+            <xsd:complexType name="AlarmArray">
+                <xsd:sequence>
+                    <xsd:element name="alarm" type="tns:DsAlarm" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+                </xsd:sequence>
+            </xsd:complexType>
+
+            <xsd:complexType name="AlarmHistoryArray">
+                <xsd:sequence>
+                    <xsd:element name="item" type="tns:DsAlarmHistory" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+                </xsd:sequence>
+            </xsd:complexType>
+
+            <xsd:complexType name="AlarmSensorsArray">
+                <xsd:sequence>
+                    <xsd:element name="item" type="tns:DsAlarmSensor" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+                </xsd:sequence>
+            </xsd:complexType>
+
+            <xsd:complexType name="DevThumbArray">
+                <xsd:sequence>
+                    <xsd:element name="action" type="tns:DsDevSensorThumb" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+                </xsd:sequence>
+            </xsd:complexType>
+
+            <xsd:complexType name="DevPictureArray">
+                <xsd:sequence>
+                    <xsd:element name="action" type="tns:DsDevSensorPicture" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+                </xsd:sequence>
+            </xsd:complexType>
+ 
+            <xsd:complexType name="DevCameraArray">
+                <xsd:sequence>
+                    <xsd:element name="action" type="tns:DsCamera" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+                </xsd:sequence>
+            </xsd:complexType>
+
+        </xsd:schema>
+    </types>
+
+    <!-- List of session handling methods begins -->
+    <message name="initProfileSessionRequest">
+        <part name="profile" type="tns:DsPrmProfile"/>
+	</message>
+    <message name="initProfileSessionResponse">
+    	<part name="return" type="tns:DsAuthSession"/>
+    </message>
+
+    <message name="closeProfileSessionRequest">
+	    <part name="session" type="tns:DsAuthSession"/>
+	</message>
+    <message name="closeProfileSessionResponse">
+        <part name="return" type="xsd:string"/>
+    </message>
+    <!-- List of session handling methods ends -->
+
+    <!-- List of profile handling methods begins -->
+    <message name="getProfilesRequest">
+        <part name="userName" type="xsd:string"/>
+        <part name="password" type="xsd:string"/>
+    </message>
+    <message name="getProfilesResponse">
+        <part name="return" type="tns:ProfileArray"/>
+    </message>
+
+    <!-- List of profile handling methods ends -->
+
+    <!-- List of device handling methods begins -->
+    <message name="getLoggedDataBySensorRequest">
+        <part name="sessionData" type="tns:DsAuthSession"/>
+        <part name="sensor" type="tns:DsDevSensor"/>
+        <part name="criteria" type="tns:DsLogCriteria"/>
+    </message>
+    <message name="getLoggedDataBySensorResponse">
+        <part name="return" type="tns:DeviceData"/>
+    </message>
+
+    <message name="getLoggedDataByDeviceRequest">
+        <part name="sessionData" type="tns:DsAuthSession"/>
+        <part name="device" type="tns:DsDevDevice"/>
+        <part name="criteria" type="tns:DsLogCriteria"/>
+    </message>
+    <message name="getLoggedDataByDeviceResponse">
+        <part name="return" type="tns:DeviceData"/>
+    </message>
+
+    <message name="getDevicesByProfileRequest">
+        <part name="sessionData" type="tns:DsAuthSession"/>
+    </message>
+    <message name="getDevicesByProfileResponse">
+        <part name="return" type="tns:DeviceArray"/>
+    </message>
+
+    <message name="getSensorsByDeviceRequest">
+        <part name="sessionData" type="tns:DsAuthSession"/>
+        <part name="device" type="tns:DsDevDevice"/>
+    </message>
+    <message name="getSensorsByDeviceResponse">
+        <part name="return" type="tns:SensorArray"/>
+    </message>
+
+    <message name="getAlarmsRequest">
+        <part name="session" type="tns:DsAuthSession"/>
+    </message>
+    <message name="getAlarmsResponse">
+        <part name="return" type="tns:AlarmArray"/>
+    </message>
+
+    <message name="getAlarmHistoryRequest">
+     <part name="session" type="tns:DsAuthSession"/>
+     <part name="alarm" type="xsd:int"/>
+     <part name="criteria" type="tns:DsLogCriteria"/>
+    </message>
+    <message name="getAlarmHistoryResponse">
+     <part name="return" type="tns:AlarmHistoryArray"/>
+    </message>
+
+    <message name="getAlarmSensorsRequest">
+     <part name="session" type="tns:DsAuthSession"/>
+     <part name="alarm" type="xsd:int"/>
+    </message>
+    <message name="getAlarmSensorsResponse">
+     <part name="return" type="tns:AlarmSensorsArray"/>
+    </message>
+
+    <message name="getAlarmDetailsRequest">
+     <part name="session" type="tns:DsAuthSession"/>
+     <part name="alarm" type="xsd:int"/>
+    </message>
+    <message name="getAlarmDetailsResponse">
+     <part name="return" type="tns:DsAlarmDetails"/>
+    </message>
+
+    <message name="getThumbnailsBySensorRequest">
+        <part name="sessionData" type="tns:DsAuthSession"/>
+        <part name="sensor" type="tns:DsDevSensor"/>
+        <part name="criteria" type="tns:DsLogCriteria"/>
+    </message>
+    <message name="getThumbnailsBySensorResponse">
+        <part name="return" type="tns:DevThumbArray"/>
+    </message>
+
+    <message name="getPictureByTimestampRequest">
+        <part name="sessionData" type="tns:DsAuthSession"/>
+        <part name="sensorid" type="xsd:string"/>
+        <part name="timestamp" type="xsd:string"/>
+    </message>
+    <message name="getPictureByTimestampResponse">
+        <part name="return" type="tns:DevPictureArray"/>
+    </message>
+
+    <message name="setPictureRequest">
+        <part name="sessionData" type="tns:DsAuthSession"/>
+	<part name="picturedata" type="xsd:string"/>
+	<part name="thumbnaildata" type="xsd:string"/>
+	<part name="mimetype" type="xsd:string"/>
+        <part name="sensorid" type="xsd:string"/>
+        <part name="timestamp" type="xsd:string"/>
+    </message>
+    <message name="setPictureResponse">
+        <part name="return" type="xsd:string"/>
+    </message>
+
+    <message name="setCameraRequest">
+        <part name="sessionData" type="tns:DsAuthSession"/>
+        <part name="id" type="xsd:string"/>
+        <part name="name" type="xsd:string"/>
+        <part name="url" type="xsd:string"/>
+    </message>
+    <message name="setCameraResponse">
+        <part name="return" type="xsd:string"/>
+    </message>
+
+    <message name="getCamerasRequest">
+        <part name="sessionData" type="tns:DsAuthSession"/>
+    </message>
+    <message name="getCamerasResponse">
+        <part name="return" type="tns:DevCameraArray"/>
+    </message>
+    <!-- List of device handling methods ends -->
+
+    <portType name="dunkkisServicePortType">
+        <operation name="getLoggedDataBySensor">
+            <input message="tns:getLoggedDataBySensorRequest"/>
+            <output message="tns:getLoggedDataBySensorResponse"/>
+        </operation>
+
+        <operation name="getLoggedDataByDevice">
+            <input message="tns:getLoggedDataByDeviceRequest"/>
+            <output message="tns:getLoggedDataByDeviceResponse"/>
+        </operation>
+
+        <operation name="initProfileSession">
+        	<input message="tns:initProfileSessionRequest"/>
+        	<output message="tns:initProfileSessionResponse"/>
+        </operation>
+
+	    <operation name="closeProfileSession">
+        	<input message="tns:closeProfileSessionRequest"/>
+        	<output message="tns:closeProfileSessionResponse"/>
+        </operation>
+
+        <operation name="getDevicesByProfile">
+        	<input message="tns:getDevicesByProfileRequest"/>
+        	<output message="tns:getDevicesByProfileResponse"/>
+        </operation>
+
+        <operation name="getSensorsByDevice">
+            <input message="tns:getSensorsByDeviceRequest"/>
+            <output message="tns:getSensorsByDeviceResponse"/>
+        </operation>
+
+        <operation name="getProfiles">
+            <input message="tns:getProfilesRequest"/>
+            <output message="tns:getProfilesResponse"/>
+        </operation>
+
+        <operation name="getAlarms">
+            <input message="tns:getAlarmsRequest"/>
+            <output message="tns:getAlarmsResponse"/>
+        </operation>
+
+        <operation name="getAlarmHistory">
+            <input message="tns:getAlarmHistoryRequest"/>
+            <output message="tns:getAlarmHistoryResponse"/>
+        </operation>
+
+        <operation name="getAlarmSensors">
+            <input message="tns:getAlarmSensorsRequest"/>
+            <output message="tns:getAlarmSensorsResponse"/>
+        </operation>
+
+        <operation name="getAlarmDetails">
+            <input message="tns:getAlarmDetailsRequest"/>
+            <output message="tns:getAlarmDetailsResponse"/>
+        </operation>
+
+        <operation name="getThumbnailsBySensor">
+            <input message="tns:getThumbnailsBySensorRequest"/>
+            <output message="tns:getThumbnailsBySensorResponse"/>
+        </operation>
+        <operation name="getPictureByTimestamp">
+            <input message="tns:getPictureByTimestampRequest"/>
+            <output message="tns:getPictureByTimestampResponse"/>
+        </operation>
+
+        <operation name="setPicture">
+            <input message="tns:setPictureRequest"/>
+            <output message="tns:setPictureResponse"/>
+        </operation>
+ 
+        <operation name="setCamera">
+            <input message="tns:setCameraRequest"/>
+            <output message="tns:setCameraResponse"/>
+        </operation>
+
+        <operation name="getCameras">
+            <input message="tns:getCamerasRequest"/>
+            <output message="tns:getCamerasResponse"/>
+        </operation>
+
+    </portType>
+
+    <binding name="dunkkisServicePortTypeBinding" type="tns:dunkkisServicePortType">
+        <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+        <operation name="initProfileSession">
+            <soap:operation soapAction=""/>
+            <input>
+                <soap:body use="literal" namespace="dunkkis:dunkkisServices"/>
+            </input>
+            <output>
+                <soap:body use="literal" namespace="dunkkis:dunkkisServices"/>
+            </output>
+        </operation>
+
+        <operation name="closeProfileSession">
+            <soap:operation soapAction=""/>
+            <input>
+                <soap:body use="literal" namespace="dunkkis:dunkkisServices"/>
+            </input>
+            <output>
+                <soap:body use="literal" namespace="dunkkis:dunkkisServices"/>
+            </output>
+        </operation>
+
+        <operation name="getDevicesByProfile">
+            <soap:operation soapAction=""/>
+            <input>
+                <soap:body use="literal" namespace="dunkkis:dunkkisServices"/>
+            </input>
+            <output>
+                <soap:body use="literal" namespace="dunkkis:dunkkisServices"/>
+            </output>
+        </operation>
+
+        <operation name="getSensorsByDevice">
+            <soap:operation soapAction=""/>
+            <input>
+                <soap:body use="literal" namespace="dunkkis:dunkkisServices"/>
+            </input>
+            <output>
+                <soap:body use="literal" namespace="dunkkis:dunkkisServices"/>
+            </output>
+        </operation>
+
+        <operation name="getProfiles">
+            <soap:operation soapAction=""/>
+            <input>
+                <soap:body use="literal" namespace="dunkkis:dunkkisServices"/>
+            </input>
+            <output>
+                <soap:body use="literal" namespace="dunkkis:dunkkisServices"/>
+            </output>
+        </operation>
+
+        <operation name="getLoggedDataBySensor">
+        	<soap:operation soapAction=""/>
+            <input>
+            	<soap:body use="literal" namespace="dunkkis:dunkkisServices"/>
+            </input>
+            <output>
+            	<soap:body use="literal" namespace="dunkkis:dunkkisServices"/>
+            </output>
+        </operation>
+
+        <operation name="getLoggedDataByDevice">
+           <soap:operation soapAction=""/>
+            <input>
+                <soap:body use="literal" namespace="dunkkis:dunkkisServices"/>
+            </input>
+            <output>
+                <soap:body use="literal" namespace="dunkkis:dunkkisServices"/>
+            </output>
+        </operation>
+
+        <operation name="getAlarms">
+           <soap:operation soapAction=""/>
+            <input>
+                <soap:body use="literal" namespace="dunkkis:dunkkisServices"/>
+            </input>
+            <output>
+                <soap:body use="literal" namespace="dunkkis:dunkkisServices"/>
+            </output>
+        </operation>
+
+        <operation name="getAlarmHistory">
+           <soap:operation soapAction=""/>
+            <input>
+                <soap:body use="literal" namespace="dunkkis:dunkkisServices"/>
+            </input>
+            <output>
+                <soap:body use="literal" namespace="dunkkis:dunkkisServices"/>
+            </output>
+        </operation>
+
+        <operation name="getAlarmSensors">
+           <soap:operation soapAction=""/>
+            <input>
+                <soap:body use="literal" namespace="dunkkis:dunkkisServices"/>
+            </input>
+            <output>
+                <soap:body use="literal" namespace="dunkkis:dunkkisServices"/>
+            </output>
+        </operation>
+
+        <operation name="getAlarmDetails">
+           <soap:operation soapAction=""/>
+            <input>
+                <soap:body use="literal" namespace="dunkkis:dunkkisServices"/>
+            </input>
+            <output>
+                <soap:body use="literal" namespace="dunkkis:dunkkisServices"/>
+            </output>
+        </operation>
+
+        <operation name="getThumbnailsBySensor">
+        	<soap:operation soapAction=""/>
+            <input>
+            	<soap:body use="literal" namespace="dunkkis:dunkkisServices"/>
+            </input>
+            <output>
+            	<soap:body use="literal" namespace="dunkkis:dunkkisServices"/>
+            </output>
+        </operation>
+
+        <operation name="getPictureByTimestamp">
+        	<soap:operation soapAction=""/>
+            <input>
+            	<soap:body use="literal" namespace="dunkkis:dunkkisServices"/>
+            </input>
+            <output>
+            	<soap:body use="literal" namespace="dunkkis:dunkkisServices"/>
+            </output>
+        </operation>
+
+        <operation name="setPicture">
+        	<soap:operation soapAction=""/>
+            <input>
+            	<soap:body use="literal" namespace="dunkkis:dunkkisServices"/>
+            </input>
+            <output>
+            	<soap:body use="literal" namespace="dunkkis:dunkkisServices"/>
+            </output>
+        </operation>
+ 
+        <operation name="setCamera">
+        	<soap:operation soapAction=""/>
+            <input>
+            	<soap:body use="literal" namespace="dunkkis:dunkkisServices"/>
+            </input>
+            <output>
+            	<soap:body use="literal" namespace="dunkkis:dunkkisServices"/>
+            </output>
+        </operation>
+ 
+        <operation name="getCameras">
+        	<soap:operation soapAction=""/>
+            <input>
+            	<soap:body use="literal" namespace="dunkkis:dunkkisServices"/>
+            </input>
+            <output>
+            	<soap:body use="literal" namespace="dunkkis:dunkkisServices"/>
+            </output>
+        </operation>
+
+    </binding>
+    <!-- CHANGE THIS TO MATCH YOUR SERVER CONFIGURATION: -->
+    <service name="dunkkisServices">
+        <port name="dunkkisServicePortTypeBindingPort" binding="tns:dunkkisServicePortTypeBinding">
+            <soap:address location="http://localhost/dunkkis-demo-v3/api/index.php"/>
+        </port>
+    </service>
+</definitions>

@@ -1,0 +1,28 @@
+The following icons (original name in parentheses) are from Tango Icon Theme version 0.8.90, which is Public Domain. (http://tango.freedesktop.org/Tango_Icon_Library)
+
+add.png (list-add.png)
+delete.png (edit-delete.png)
+edit.png (document-open.png)
+first.png (go-first.png)
+history.png (edit-find.png)
+history_small.png (edit-find.png, 22x22 version)
+last.png (go-last.png)
+next.png (go-next.png)
+previous.png (go-previous.png)
+remove.png (list-remove.png)
+sensor_off.png (dialog-information.png)
+
+The following icons are composed of icons in the Tango Icon Theme version 0.8.90 and Tango Theme for Plango, which is sharead under Creative Commons Attribution-ShareAlike 2.5 license. (http://plone.org/products/plango)
+
+email_add.png
+email_del.png
+first_disabled.png
+last_disabled.png
+next_disabled.png
+previous_disabled.png
+sensor_on.png
+sms_add.png
+sms_del.png
+user-decrease.png
+user-increase.png
+user-reset.png

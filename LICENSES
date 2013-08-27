@@ -1,0 +1,212 @@
+Dunkkis Server
+==============
+README
+
+Copyright (c) 2009-2010 Nomovok Ltd
+This software is licensed under The MIT License. See LICENSE for details.
+
+Author Juha Hytonen - juha.hytonen@nomovok.com
+
+
+
+
+
+Contents
+--------
+
+Introduction
+pChart
+Joomla
+MooTools
+GeosansLight.ttf, MankSans.ttf
+pf_arma_five.ttf
+LiberationSans-Regular.ttf
+Tango Icon Theme version 0.8.90
+
+
+
+
+
+Introduction
+------------
+
+This file contains the licensing information of the third-party components
+used in the application. The third party components cotain the pChart chart
+drawing tool, some additional libraries, fonts and icons. The below mentioned
+GNU General Public License (or GPL) can be found in the GPL file. The
+Creative Commons Attribution-ShareAlike 2.5 license can be found at 
+http://creativecommons.org/licenses/by-sa/2.5/legalcode.
+
+
+
+
+
+pChart
+------
+
+pChart - a PHP class to build charts!
+Copyright (C) 2008 Jean-Damien POGOLOTTI
+Version  1.27d last updated on 09/30/08
+
+http://pchart.sourceforge.net
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 1,2,3 of the License, or
+(at your option) any later version.
+
+
+
+
+
+Joomla
+------
+
+/**
+ * @version		$Id: COPYRIGHT.php 11416 2009-01-17 09:55:02Z willebil $
+ * @package		Joomla
+ * @copyright	Copyright (C) 2005 - 2009 Open Source Matters. All rights reserved.
+ * @license		GNU/GPL
+ * Joomla! is free software. This version may have been modified pursuant
+ * to the GNU General Public License, and as distributed it includes or
+ * is derivative of works licensed under the GNU General Public License or
+ * other free or open source software licenses.
+ */
+
+Joomla! derives from copyrighted works licensed under the GNU General
+Public License.  This version has been modified pursuant to the
+GNU General Public License as of September 15, 2005, and as distributed,
+it includes or is derivative of works licensed under the GNU General
+Public License or other free or open source software licenses.  Please
+see the CREDITS.php for a non-exhaustive list of contributors and
+copyright holders.  A full text version of the GNU GPL version 2 can be
+found in the LICENSE.php file.  A full text version of the other licenses
+that Joomla! is derivative of or includes can be found in LICENSES.php.
+
+(http://www.joomlaportal.fi/)
+
+
+
+
+
+MooTools
+--------
+
+My Object Oriented Javascript Tools. 
+Copyright (c) 2006 Valerio Proietti
+
+MIT Style License.
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+
+(http://mad4milk.net)
+
+
+
+
+
+GeosansLight.ttf, MankSans.ttf
+------------------------------
+
+Manfred’s fonts are free for private and charity use. They are even free for commercial use – but if there’s any profit, pls make a donation to organizations like Doctors Without Borders.
+
+These fonts can NOT be included in any compilation CDs, disks or products, either commercial or shareware unless prior permission granted.
+
+All typefaces were created by Manfred Klein 2001-2008.
+(http://manfred-klein.ina-mar.com/, http://moorstation.org/typoasis/designers/klein04/index.htm)
+
+
+
+
+
+pf_arma_five.ttf
+----------------
+
+(C) Yusuke Kamiyamane
+
+The fonts can be used free for any personal or commercial projects.
+
+http://www.pinvoke.com/font/
+
+
+
+
+
+Silkscreen.ttf
+--------------
+
+(C) Jason Kottke
+
+The Silkscreen type family is absolutely free for personal or corporate use. You can use it for any project you want (Web, print, or otherwise) without owing anyone a single penny.
+
+http://kottke.org/plus/type/silkscreen/
+
+
+
+
+
+LiberationSans-Regular.ttf
+--------------------------
+
+LICENSE AGREEMENT AND LIMITED PRODUCT WARRANTY
+LIBERATION FONT SOFTWARE
+
+This agreement governs the use of the Software and any updates to the Software, regardless of the delivery mechanism. Subject to the following terms, Red Hat, Inc. ("Red Hat") grants to the user ("Client") a license to this work pursuant to the GNU General Public License v.2 with the exceptions set forth below and such other terms as are set forth in this End User License Agreement.
+
+ 1. The Software and License Exception. LIBERATION font software  (the "Software") consists of TrueType-OpenType formatted font software for rendering LIBERATION typefaces in sans-serif, serif, and monospaced character styles. You are licensed to use, modify, copy, and distribute the Software pursuant to the GNU General Public License v.2 with the following exceptions:  
+
+  (a) As a special exception, if you create a document which uses this font, and embed this font or unaltered portions of this font into the document, this font does not by itself cause the resulting document to be covered by the GNU General Public License. This exception does not however invalidate any other reasons why the document might be covered by the GNU General Public License. If you modify this font, you may extend this exception to your version of the font, but you are not obligated to do so. If you do not wish to do so, delete this exception statement from your version.
+
+  (b) As a further exception, any distribution of the object code of the Software in a physical product must provide you the right to access and modify the source code for the Software and to reinstall that modified version of the Software in object code form on the same physical product on which you received it.
+
+
+
+
+
+Tango Icon Theme version 0.8.90
+-------------------------------
+
+Licensing: "The icons in this repository are herefore released into the Public Domain."
+(http://www.gnome-look.org/content/show.php/?content=70012)
+
+add.png (list-add.png)
+delete.png (edit-delete.png)
+edit.png (document-open.png)
+first.png (go-first.png)
+history.png (edit-find.png)
+history_small.png (edit-find.png)
+last.png (go-last.png)
+next.png (go-next.png)
+previous.png (go-previous.png)
+remove.png (list-remove.png)
+sensor_off.png (dialog-information.png)
+
+The following icons are composed of icons in the Tango Icon Theme version 0.8.90 and Tango Theme for Plango, which is sharead under Creative Commons Attribution-ShareAlike 2.5 license. (http://plone.org/products/plango)
+
+email_add.png
+email_del.png
+first_disabled.png
+last_disabled.png
+next_disabled.png
+previous_disabled.png
+sensor_on.png
+sms_add.png
+sms_del.png
+user-decrease.png
+user-increase.png
+user-reset.png
